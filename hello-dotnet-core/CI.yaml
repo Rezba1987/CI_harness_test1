@@ -1,0 +1,49 @@
+harnessApiVersion: '1.0'
+
+pipeline:
+  name: CI/CD Pipeline
+  trigger:
+    - type: git
+      branch: main
+      path: '/'
+
+stages:
+  - name: Build
+    environmentVariables:
+      - name: GITHUB_URL
+        value: "https://github.com/Rezba1987/java-demo3"
+      - name: GITHUB_USERNAME
+        value: "Rezba1987"
+      - name: GITHUB_PASSWORD
+        value: "doggydoggyd0G$"
+    steps:
+      - name: Checkout Source Code
+        type: git-clone
+        configuration:
+          url: ${GITHUB_URL}
+          username: ${GITHUB_USERNAME}
+          password: ${GITHUB_PASSWORD}
+          branch: main
+          targetDir: /app
+
+      - name: Build Application
+        type: shell-script
+        configuration:
+          scriptPath: /test-harness/hello-dotnet-core/build.sh
+
+
+  - name: Dockerize
+    steps:
+      - name: Build Docker Image
+        type: shell-script
+        configuration:
+          scriptPath: /test-harness/hello-dotnet-core/build-docker.sh
+
+      - name: Push to Quay Registry
+        type: docker-push
+        configuration:
+          name: my-docker-image
+          tag: latest
+          registry: quay.io
+          repository: ea-testproject/test_number_1
+          

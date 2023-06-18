@@ -1,0 +1,15 @@
+/home/drezba/test-harness/hello-dotnet-core/bin/Release/net6.0/helloworld-dotnetcore
+/home/drezba/test-harness/hello-dotnet-core/bin/Release/net6.0/helloworld-dotnetcore.deps.json
+/home/drezba/test-harness/hello-dotnet-core/bin/Release/net6.0/helloworld-dotnetcore.runtimeconfig.json
+/home/drezba/test-harness/hello-dotnet-core/bin/Release/net6.0/helloworld-dotnetcore.dll
+/home/drezba/test-harness/hello-dotnet-core/bin/Release/net6.0/helloworld-dotnetcore.pdb
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/helloworld-dotnetcore.csproj.AssemblyReference.cache
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/helloworld-dotnetcore.GeneratedMSBuildEditorConfig.editorconfig
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/helloworld-dotnetcore.AssemblyInfoInputs.cache
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/helloworld-dotnetcore.AssemblyInfo.cs
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/helloworld-dotnetcore.csproj.CoreCompileInputs.cache
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/helloworld-dotnetcore.dll
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/refint/helloworld-dotnetcore.dll
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/helloworld-dotnetcore.pdb
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/helloworld-dotnetcore.genruntimeconfig.cache
+/home/drezba/test-harness/hello-dotnet-core/obj/Release/net6.0/ref/helloworld-dotnetcore.dll
