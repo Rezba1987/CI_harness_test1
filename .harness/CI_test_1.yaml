@@ -36,3 +36,5 @@ pipeline:
                     repo: ea-testproject/test_number_1
                     tags:
                       - tag#1
+                    dockerfile: /CI_harness-test1/Dockerfile
+                    sourceCodeLocation: /CI_harness-test1/.harness/helloworld-dotnetcore.csproj
