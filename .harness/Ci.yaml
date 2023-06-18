@@ -36,3 +36,8 @@ pipeline:
                     repo: https://github.com/Rezba1987/java-demo3
                     tags:
                       - "1"
+                    dockerfile: Dockerfile
+                    resources:
+                      limits:
+                        memory: 4Gi
+                        cpu: "1"
