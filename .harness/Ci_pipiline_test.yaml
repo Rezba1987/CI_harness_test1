@@ -1,0 +1,38 @@
+pipeline:
+  name: Ci_pipiline_test
+  identifier: Ci_pipiline_test
+  projectIdentifier: DmitriRezba
+  orgIdentifier: HarnessTraining
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: Dmitrii_github_connector
+        build: <+input>
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: OKD_connector
+              namespace: fss-apollo-main-dmitrii
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: Quay_docker_registry
+                    repo: ea-testproject/test_number_1
+                    tags:
+                      - test_1
