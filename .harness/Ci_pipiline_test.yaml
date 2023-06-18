@@ -17,14 +17,6 @@ pipeline:
         type: CI
         spec:
           cloneCodebase: true
-          infrastructure:
-            type: KubernetesDirect
-            spec:
-              connectorRef: OKD_connector
-              namespace: fss-apollo-main-dmitrii
-              automountServiceAccountToken: true
-              nodeSelector: {}
-              os: Linux
           execution:
             steps:
               - step:
@@ -36,3 +28,9 @@ pipeline:
                     repo: ea-testproject/test_number_1
                     tags:
                       - test_1
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
