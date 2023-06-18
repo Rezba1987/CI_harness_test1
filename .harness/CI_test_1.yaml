@@ -1,0 +1,38 @@
+pipeline:
+  name: CI_test_1
+  identifier: CI_test_1
+  projectIdentifier: Dmitrii_Rezba_test
+  orgIdentifier: fss_apollo
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: Rezba_GitHub_Connector
+        build: <+input>
+  stages:
+    - stage:
+        name: BuildandPush_to_Quay
+        identifier: BuildandPush_to_Quay
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: Rezba_OKD_connector
+              namespace: fss-apollo-main-dmitrii
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: Rezba_Quay_connector
+                    repo: ea-testproject/test_number_1
+                    tags:
+                      - tag#1
