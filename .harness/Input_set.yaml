@@ -1,0 +1,15 @@
+inputSet:
+  name: Input_set
+  identifier: Input_set
+  orgIdentifier: fss_apollo
+  projectIdentifier: Dmitrii_Rezba_test
+  pipeline:
+    identifier: CI_test_1
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
+  object Object: pipeline.properties.ci.codebase
