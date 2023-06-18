@@ -20,7 +20,7 @@ pipeline:
           infrastructure:
             type: KubernetesDirect
             spec:
-              connectorRef: org.okdfssapollomain
+              connectorRef: Rezba_OKD_connector
               namespace: fss-apollo-main-dmitrii
               automountServiceAccountToken: true
               nodeSelector: {}
