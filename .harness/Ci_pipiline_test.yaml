@@ -28,9 +28,12 @@ pipeline:
                     repo: ea-testproject/test_number_1
                     tags:
                       - test_1
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Docker
-            spec: {}
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: OKD_connector
+              namespace: fss-apollo-main-dmitrii
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              harnessImageConnectorRef: Quay_docker_registry
+              os: Linux
