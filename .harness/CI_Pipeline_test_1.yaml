@@ -9,30 +9,62 @@ pipeline:
       codebase:
         connectorRef: Rezba_GitHub_Connector
         build: <+input>
-  stages:
-    - stage:
-        name: Build
-        identifier: Build
-        description: ""
-        type: CI
-        spec:
-          cloneCodebase: true
-          infrastructure:
-            type: KubernetesDirect
-            spec:
-              connectorRef: Rezba_OKD_connector
-              namespace: fss-apollo-main-dmitrii
-              automountServiceAccountToken: true
-              nodeSelector: {}
-              os: Linux
-          execution:
-            steps:
-              - step:
-                  type: BuildAndPushDockerRegistry
-                  name: BuildAndPushDockerRegistry_1
-                  identifier: BuildAndPushDockerRegistry_1
-                  spec:
-                    connectorRef: Rezba_Quay_connector
-                    repo: ea-testprojecttest_number_1
-                    tags:
-                      - test_1
+
+stages:
+  - stage:
+      name: Build
+      identifier: Build
+      description: ""
+      type: CI
+      spec:
+        cloneCodebase: true
+        infrastructure:
+          type: KubernetesDirect
+          spec:
+            connectorRef: Rezba_OKD_connector
+            namespace: fss-apollo-main-dmitrii
+            automountServiceAccountToken: true
+            nodeSelector: {}
+            os: Linux
+
+        execution:
+          steps:
+            - step:
+                type: BuildAndPushDockerRegistry
+                name: BuildAndPushDockerRegistry_1
+                identifier: BuildAndPushDockerRegistry_1
+                spec:
+                  connectorRef: Rezba_Quay_connector
+                  repo: ea-testprojecttest_number_1
+                  tags:
+                    - test_1
+
+            - step:
+                name: Checkout Source Code
+                type: git-clone
+                configuration:
+                  url: ${GITHUB_URL}
+                  username: ${GITHUB_USERNAME}
+                  password: ${GITHUB_PASSWORD}
+                  branch: main
+                  targetDir: /app
+
+            - name: Build Application
+              type: shell-script
+              configuration:
+                scriptPath: /test-harness/hello-dotnet-core/build.sh
+
+            - name: Dockerize
+              steps:
+                - name: Build Docker Image
+                  type: shell-script
+                  configuration:
+                    scriptPath: /test-harness/hello-dotnet-core/build-docker.sh
+
+                - name: Push to Quay Registry
+                  type: docker-push
+                  configuration:
+                    name: my-docker-image
+                    tag: latest
+                    registry: quay.io
+                    repository: ea-testproject/test_number_1
